@@ -17,6 +17,7 @@
       :request="request"
       :max-file-size="maxFileSize"
       :features="features"
+      loadingIndicator="linear"
       @select="handleSelect"
     />
 

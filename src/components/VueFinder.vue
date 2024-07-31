@@ -115,6 +115,10 @@ const props = defineProps({
   onError: {
     type: Function,
     default: null,
+  },
+  loadingIndicator: {
+    type: String,
+    default: 'circular'
   }
 });
 
