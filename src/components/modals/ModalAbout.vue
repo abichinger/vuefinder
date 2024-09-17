@@ -1,7 +1,7 @@
 <template>
   <ModalLayout>
     <div class="vuefinder__about-modal__content">
-      <ModalHeader :icon="AboutSVG" :title="'Vuefinder ' + app.version"></ModalHeader>
+      <ModalHeader :icon="AboutSVG" :title="'Cloudlink'"></ModalHeader>
 
       <div class="vuefinder__about-modal__main">
         <div>
@@ -15,9 +15,8 @@
         </div>
 
         <div class="vuefinder__about-modal__tab-content" v-if="selectedTab === TAB.ABOUT">
-          <div class="vuefinder__about-modal__description">{{ t('Vuefinder is a simple, lightweight, and fast file manager library for Vue.js applications') }}</div>
-          <a href="https://vuefinder.ozdemir.be" class="vuefinder__about-modal__link" target="_blank">{{ t('Project home') }}</a>
-          <a href="https://github.com/n1crack/vuefinder" class="vuefinder__about-modal__link" target="_blank">{{ t('Follow on GitHub') }}</a>
+          <div class="vuefinder__about-modal__description">{{ t('Cloudlink is a module to connect cloud storages to Odoo, manage your attachments and sync your data to the cloud.') }}</div>
+          <a href="https://abichinger.github.io/odoo_cloud_link_docs/17.0/" class="vuefinder__about-modal__link" target="_blank">{{ t('Read the Docs') }}</a>
         </div>
 
         <div class="vuefinder__about-modal__tab-content" v-if="selectedTab === TAB.SETTINGS">
