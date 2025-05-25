@@ -26,6 +26,7 @@ export default defineConfig({
         },
     },
     build: {
+        minify: false,
         lib: {
             entry: resolve(__dirname, 'src/index.js'),
             formats: ['es', 'cjs'],
@@ -41,6 +42,7 @@ export default defineConfig({
                 'mitt',
                 'vanilla-lazyload',
                 'dragselect',
+                'overlayscrollbars',
                 'cropperjs/dist/cropper.css',
                 'cropperjs',
                 '@uppy/core',
