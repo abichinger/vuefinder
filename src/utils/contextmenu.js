@@ -6,6 +6,7 @@ import ModalArchive from "../components/modals/ModalArchive.vue";
 import ModalUnarchive from "../components/modals/ModalUnarchive.vue";
 import ModalRename from "../components/modals/ModalRename.vue";
 import ModalDelete from "../components/modals/ModalDelete.vue";
+import ModalDownloadArchive from "../components/modals/ModalDownloadArchive.vue"
 
 const TARGET = {
   none: 'none',
@@ -252,6 +253,18 @@ export const menuItems = [
       showIf({target: 'many', feature: FEATURES.ARCHIVE}),
       showIfAll(
         showIf({target: 'one', feature: FEATURES.ARCHIVE}), 
+        (app, ctx) => ctx.target?.mime_type !== 'application/zip'
+      )
+    ) 
+  },
+  {
+    id: ContextMenuIds.download_archive,
+    title: ({t}) => t('Download archive'),
+    action: (app, selectedItems) => app.modal.open(ModalDownloadArchive, {items: selectedItems}),
+    show: showIfAny(
+      showIf({target: 'many', feature: FEATURES.DOWNLOAD_ARCHIVE}),
+      showIfAll(
+        showIf({target: 'one', feature: FEATURES.DOWNLOAD_ARCHIVE}), 
         (app, ctx) => ctx.target?.mime_type !== 'application/zip'
       )
     ) 
