@@ -6,6 +6,7 @@ import ModalArchive from "../components/modals/ModalArchive.vue";
 import ModalUnarchive from "../components/modals/ModalUnarchive.vue";
 import ModalRename from "../components/modals/ModalRename.vue";
 import ModalDelete from "../components/modals/ModalDelete.vue";
+import ModalDownloadArchive from "../components/modals/ModalDownloadArchive.vue"
 
 /**
  * @typedef {typeof import('../ServiceContainer.js')['default']} ServiceContainer
@@ -192,6 +193,11 @@ const templateMap = {
     title: ({t}) => t('Download'),
     action: () => {},
   },
+  download_archive: {
+    key: FEATURES.DOWNLOAD_ARCHIVE,
+    title: ({t}) => t('Download archive'),
+    action: (app, selectedItems) => app.modal.open(ModalDownloadArchive, {items: selectedItems}),
+  },
   archive: {
     key: FEATURES.ARCHIVE,
     title: ({t}) => t('Archive'),
@@ -217,7 +223,7 @@ export const menuItems = [
   ...itemBundle([templateMap.refresh, templateMap.selectAll, templateMap.newfolder], {
     target: null,
   }),
-  ...itemBundle([templateMap.refresh, templateMap.archive, templateMap.delete], {
+  ...itemBundle([templateMap.refresh, templateMap.archive, templateMap.download_archive, templateMap.delete], {
     target: 'many'
   }),
   ...itemBundle([templateMap.open], {
