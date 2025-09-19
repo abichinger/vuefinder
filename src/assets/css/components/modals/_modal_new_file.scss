@@ -14,3 +14,27 @@
 .vuefinder .vuefinder__new-file-modal__input {
   @apply px-2 py-1 border rounded dark:bg-gray-700/25 dark:border-gray-600 dark:focus:ring-gray-600 dark:focus:border-gray-600 dark:text-gray-100 w-full;
 }
+
+.vuefinder__new-file-modal__filetype{
+  @apply mt-3 text-left;
+}
+
+.vuefinder__new-file-modal__filetype {
+  @apply block relative gap-x-3 items-center;
+}
+
+.vuefinder__new-file-modal__filetype-input {
+  @apply h-6 flex items-center;
+}
+
+.vuefinder__new-file-modal__filetype-label {
+  @apply flex flex-1 block text-sm;
+}
+
+.vuefinder .vuefinder__new-file-modal__label {
+  @apply flex w-full text-sm text-gray-900 dark:text-gray-400;
+}
+
+.vuefinder .vuefinder__new-file-modal__select {
+  @apply flex-shrink-0 sm:w-1/2 w-full text-sm text-slate-500 border dark:border-gray-600 dark:text-neutral-50 dark:bg-gray-700 rounded;
+}
