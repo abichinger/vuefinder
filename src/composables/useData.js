@@ -92,7 +92,7 @@ export default function (initialAdapter, initialPath) {
         // load data
     });
 
-    watch(path, updateBreadcrumbs)
+    watch([path, adapter], updateBreadcrumbs)
     onMounted(updateBreadcrumbs)
 
     return {

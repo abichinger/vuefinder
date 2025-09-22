@@ -33,7 +33,8 @@ export default (props, options) => {
     const persist = storage.getStore('persist-path', props.persist);
 
     const path = persist ? storage.getStore('path', props.path) : props.path;
-    const adapter = persist ? storage.getStore('adapter') : null;
+    const defaultAdapter = path.includes(':/') ? path.split(':/')[0] : null
+    const adapter = persist ? storage.getStore('adapter') : defaultAdapter;
 
     var _dragSelect = null;
 

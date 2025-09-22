@@ -118,8 +118,8 @@ app.emitter.on('vf-fetch', ({params, body = null, onSuccess = null, onError = nu
     abortSignal: signal,
   }).then(data => {
     app.fs.adapter = data.adapter;
+    app.fs.path = data.dirname;
     if (app.persist) {
-      app.fs.path = data.dirname;
       setStore('path', app.fs.path);
     }
 
