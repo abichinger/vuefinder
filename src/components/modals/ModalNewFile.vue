@@ -30,7 +30,7 @@
     </div>
 
     <template v-slot:buttons>
-      <button type="button" @click="createFile" class="vf-btn vf-btn-primary">{{ t('Create') }}</button>
+      <button type="button" @click="createFile" :disabled="loading" class="vf-btn vf-btn-primary">{{ t('Create') }}</button>
       <button type="button" @click="app.modal.close()" class="vf-btn vf-btn-secondary">{{ t('Cancel') }}</button>
     </template>
   </ModalLayout>
@@ -42,6 +42,7 @@ import {inject, ref} from 'vue';
 import Message from '../Message.vue';
 import ModalHeader from "./ModalHeader.vue";
 import NewFileSVG from "../icons/new_file.svg";
+import { useVfFetch } from '../../composables/useVfFetch';
 
 const app = inject('ServiceContainer');
 const {t} = app.i18n;
@@ -83,10 +84,15 @@ if (isGoogleDriveFS) {
 }
 
 const mimetype = ref(filetypes[0]?.mimetype ?? '')
+const { loading, vfFetch } = useVfFetch(app)
 
-const createFile = () => {
-  if (name.value !== '') {
-    app.emitter.emit('vf-fetch', {
+const createFile = async () => {
+  if (name.value == '') {
+    return
+  }
+
+  try {
+    await vfFetch({
       params: {
         q: 'newfile',
         m: 'post',
@@ -97,14 +103,11 @@ const createFile = () => {
       body: {
         name: name.value
       },
-      onSuccess: () => {
-        app.emitter.emit('vf-toast-push', {label: t('%s is created.', name.value)});
-      },
-      onError: (e) => {
-        message.value = t(e.message);
-      }
-    });
-  }
+    })
+    app.emitter.emit('vf-toast-push', {label: t('%s is created.', name.value)});
+  } catch(e) {
+    message.value = t(e.message);
+  }  
 };
 
 </script>
